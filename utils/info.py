@@ -21,6 +21,3 @@ def vncrunningdialog(port):
         +green("vncserver -kill :"+str(port))\
         +" or "+blue("stopvnc")
 
-def vnckilldialog(port):
-    return "vncserver stopped on "+str(LOCALIP)+" port "+str(port)
-
