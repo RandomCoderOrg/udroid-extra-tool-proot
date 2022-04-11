@@ -14,10 +14,7 @@ def vnc_mode(port=1,mode="start",xstartup=os.getenv('HOME')+"/.vnc/xstartup"):
             else:
                 print(vncrunningdialog(port))
         elif mode == "stop":
-            if vnc.stopvnc(port):
-                print(vnckilldialog(port))
-            else:
-                print("No VNC server running at "+str(port))
+            vnc.stopvnc(port)
     else:
         print("xstartup file not found")
 
