@@ -1,5 +1,5 @@
 import os
-from funs import nmsg
+from utils.funs import nmsg
 
 DISPLAY=os.getenv('DISPLAY')
 VNC_LOCK_TYPE="/tmp/.X11-unix/X"
