@@ -23,9 +23,11 @@ def vnc_mode(port=1,mode="start",xstartup=os.getenv('HOME')+"/.vnc/xstartup"):
 
 if __name__ == '__main__':
     parser =  optparse.OptionParser()
-    parser.add_option("--startvnc",action='store_true', default=False, help="Start VNC on port")
-    parser.add_option("--stopvnc" ,action='store_true', default=False, help="Stop VNC on port")
-    parser.add_option("-p", "--port", help="VNC port", default=1)
+    parser.add_option("--upgrade"   ,action="store_true", default=False, help="Installs update if found updates")
+    parser.add_option("--upgrade-check",action="store_true", default=False, help="check for updates")
+    parser.add_option("--startvnc"  ,action='store_true', default=False, help="Start VNC on port")
+    parser.add_option("--stopvnc"   ,action='store_true', default=False, help="Stop VNC on port")
+    parser.add_option("-p", "--port", help="VNC port" , default=1)
 
     (options, args) = parser.parse_args()
 
@@ -34,5 +36,13 @@ if __name__ == '__main__':
         sys.exit(0)
     if options.stopvnc:
         vnc_mode(port=options.port,mode="stop")
+        sys.exit(0)
+    if options.upgrade:
+        from utils.upgrade import *
+        do_upgrade()
+        sys.exit(0)
+    if options.upgrade_check:
+        from utils.upgrade import *
+        upgrade_check()
         sys.exit(0)
     
