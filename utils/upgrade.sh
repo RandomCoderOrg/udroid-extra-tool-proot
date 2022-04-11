@@ -1,7 +1,7 @@
 #!/bin/bash
 
 repo_link="https://github.com/RandomCoderOrg/udroid-extra-tool-proot"
-_basename="$(basnemae $repo_link)"
+_basename="$(basename $repo_link)"
 if [ -d "$_basename" ]; then
     rm -rf "$_basename"
 fi
