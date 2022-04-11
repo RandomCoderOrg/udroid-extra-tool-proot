@@ -53,9 +53,23 @@ if [[ -f /usr/bin/stopvnc ]]; then
     rm -rvf /usr/bin/stopvnc
 fi
 
+if [[ -f /usr/bin/udroid-upgrade-check ]]; then
+    rm -rvf /usr/bin/udroid-upgrade-check
+fi
+
+if [[ -f /usr/bin/udroid-upgrade ]]; then
+    rm -rvf /usr/bin/udroid-upgrade
+fi
+
 ln -sv /usr/share/udroid/main.sh /usr/bin/startvnc || {
     die "Failed to create symlink"
 }
 ln -sv /usr/share/udroid/main.sh /usr/bin/stopvnc || {
+    die "Failed to create symlink"
+}
+ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade-check || {
+    die "Failed to create symlink"
+}
+ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade || {
     die "Failed to create symlink"
 }
