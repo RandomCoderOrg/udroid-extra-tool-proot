@@ -1,16 +1,15 @@
 import os
-
-from utils.funs import nmsg
+from funs import nmsg
 
 DISPLAY=os.getenv('DISPLAY')
-VNC_LOCK_TYPE="/tmp/X11-unix/X"
+VNC_LOCK_TYPE="/tmp/.X11-unix/X"
 
 def isvncstarted(port:int) -> bool:
     """
     Check if VNC is started
     """
     if os.path.exists(VNC_LOCK_TYPE+str(port)) \
-        or os.path.exists("/tmp/X"+str(port)+"-lock"):
+        or os.path.exists("/tmp/.X"+str(port)+"-lock"):
         return True
     else:
         return False
@@ -42,8 +41,8 @@ def stopvnc(port:int) -> bool:
         nmsg("Cleaning Lock File")
         if os.path.exists(VNC_LOCK_TYPE+str(port)):
             os.remove(VNC_LOCK_TYPE+str(port))
-        if os.path.exists("/tmp/X"+str(port)+"-lock"):
-            os.remove("/tmp/X"+str(port)+"-lock")
+        if os.path.exists("/tmp/.X"+str(port)+"-lock"):
+            os.remove("/tmp/.X"+str(port)+"-lock")
         nmsg("VNC Server Stopped")
     else:
         nmsg("VNC Server not started at "+str(port))
