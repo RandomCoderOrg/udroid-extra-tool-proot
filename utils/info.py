@@ -1,5 +1,5 @@
 import os
-from funs import *
+from utils.funs import *
 
 ######## VNC
 if os.popen("hostname -I | cut -d \" \" -f 2 | tr -d '\\n'").read() is '':
@@ -25,5 +25,3 @@ def vncrunningdialog(port):
         +"\n"+"To stop it, run:\n"\
         +green("vncserver -kill :"+str(port))\
         +" or "+blue("stopvnc")
-
-print(vncokdialog(5900))
