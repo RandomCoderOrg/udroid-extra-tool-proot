@@ -2,10 +2,11 @@ import os
 from funs import *
 
 ######## VNC
-if os.system("hostname -I | cut -d \" \" -f 2") is None:
-    IPv4Address = os.system("hostname -I")
+if os.popen("hostname -I | cut -d \" \" -f 2 | tr -d '\\n'").read() is '':
+    # hostname returs \n which can effect logic
+    IPv4Address = os.popen("hostname -I | tr -d '\\n'").read().strip()
 else:
-    IPv4Address = os.system("hostname -I | cut -d \" \" -f 2")
+    IPv4Address = os.popen("hostname -I | cut -d \" \" -f 2 | tr -d '\\n'").read().strip()
 
 LOCALIP="127.0.0.1"
 
@@ -24,3 +25,5 @@ def vncrunningdialog(port):
         +"\n"+"To stop it, run:\n"\
         +green("vncserver -kill :"+str(port))\
         +" or "+blue("stopvnc")
+
+print(vncokdialog(5900))
