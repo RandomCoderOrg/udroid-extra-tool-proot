@@ -1,8 +1,8 @@
-import socket
+import os
 from funs import *
 
 ######## VNC
-IPv4Address=socket.gethostbyname(socket.gethostname())
+IPv4Address=os.system("hostname -I | cut -d \" \" -f 2")
 LOCALIP="127.0.0.1"
 
 def vncokdialog(port):
