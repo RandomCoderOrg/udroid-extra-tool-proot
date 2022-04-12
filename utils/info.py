@@ -2,7 +2,11 @@ import os
 from funs import *
 
 ######## VNC
-IPv4Address=os.system("hostname -I | cut -d \" \" -f 2")
+if os.system("hostname -I | cut -d \" \" -f 2") is None:
+    IPv4Address = os.system("hostname -I")
+else:
+    IPv4Address = os.system("hostname -I | cut -d \" \" -f 2")
+
 LOCALIP="127.0.0.1"
 
 def vncokdialog(port):
