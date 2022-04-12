@@ -1,6 +1,5 @@
-from ipaddress import IPv4Address
-import os, socket
-from utils.funs import *
+import socket
+from funs import *
 
 ######## VNC
 IPv4Address=socket.gethostbyname(socket.gethostname())
@@ -21,4 +20,9 @@ def vncrunningdialog(port):
         +"\n"+"To stop it, run:\n"\
         +green("vncserver -kill :"+str(port))\
         +" or "+blue("stopvnc")
+
+print(vncokdialog(5900))
+print(IPv4Address)
+print(socket.gethostbyname(socket.gethostname()))
+
 
