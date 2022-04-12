@@ -20,9 +20,3 @@ def vncrunningdialog(port):
         +"\n"+"To stop it, run:\n"\
         +green("vncserver -kill :"+str(port))\
         +" or "+blue("stopvnc")
-
-print(vncokdialog(5900))
-print(IPv4Address)
-print(socket.gethostbyname(socket.gethostname()))
-
-
