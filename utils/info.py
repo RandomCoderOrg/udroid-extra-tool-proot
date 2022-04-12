@@ -2,7 +2,7 @@ import os
 from utils.funs import *
 
 ######## VNC
-if os.popen("hostname -I | cut -d \" \" -f 2 | tr -d '\\n'").read() is '':
+if not os.popen("hostname -I | cut -d \" \" -f 2 | tr -d '\\n'").read().strip():
     # hostname returs \n which can effect logic
     IPv4Address = os.popen("hostname -I | tr -d '\\n'").read().strip()
 else:
