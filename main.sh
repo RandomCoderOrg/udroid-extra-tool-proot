@@ -14,4 +14,6 @@ case $(echo "$0" | cut -d "/" -f 4) in
     "udroid-upgrade-check")
         python3 /usr/share/udroid/main.py --upgrade-check
     ;;
+    "clipboard-service")
+        python3 /usr/share/udroid/main.py --clipboard-service
 esac

@@ -20,6 +20,7 @@ def vnc_mode(port=1,mode="start",xstartup=os.getenv('HOME')+"/.vnc/xstartup"):
 
 if __name__ == '__main__':
     parser =  optparse.OptionParser()
+    parser.add_option("--clipboard-service", action="store_true", dest="clipboard_service", default=False, help="Start clipboard service")
     parser.add_option("--upgrade"   ,action="store_true", default=False, help="Installs update if found updates")
     parser.add_option("--upgrade-check",action="store_true", default=False, help="check for updates")
     parser.add_option("--startvnc"  ,action='store_true', default=False, help="Start VNC on port")
@@ -42,4 +43,6 @@ if __name__ == '__main__':
         from utils.upgrade import *
         upgrade_check()
         sys.exit(0)
-    
+    if options.clipboard_service:
+        from utils.clipboard_watcher import *
+        start_clipboard_service()

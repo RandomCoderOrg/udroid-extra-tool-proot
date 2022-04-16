@@ -74,4 +74,6 @@ ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade || {
     die "Failed to create symlink"
 }
 
+# Clipboard-service
+
 shout "Installation Complete."
