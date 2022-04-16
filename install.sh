@@ -73,3 +73,5 @@ ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade-check || {
 ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade || {
     die "Failed to create symlink"
 }
+
+shout "Installation Complete."
