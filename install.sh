@@ -38,6 +38,11 @@ if [ -f main.py ]; then
     }
 fi
 
+# Clipboard watcher service
+cp utils/clipboard_watcher.service /lib/systemd/system/clipboard_watcher.service || {
+    die "Failed to install clipboard_watcher.service"
+}
+
 if [ -f main.sh ]; then
     cp -v main.sh /usr/share/udroid/ || {
         die "Failed to copy main.sh"
@@ -73,7 +78,5 @@ ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade-check || {
 ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade || {
     die "Failed to create symlink"
 }
-
-# Clipboard-service
 
 shout "Installation Complete."
