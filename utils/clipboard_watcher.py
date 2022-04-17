@@ -13,7 +13,7 @@ def start_clipboard_service():
         print("xclip not found")
         os.exit(1)
     
-    while os.getenv('Display') is not None:
+    while os.getenv('DISPLAY') is not None:
         time.sleep(0.4)
         if os.path.exists(CLIPBOARD_BUFFER_FILE):
             if os.path.getmtime(CLIPBOARD_BUFFER_FILE) != last_modified_time:
