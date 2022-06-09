@@ -2,10 +2,11 @@ import os, time
 
 CLIPBOARD_BUFFER_FILE="/tmp/clipboard"
 
-##############
-# watch if clipboard buffer file has changed with last modified time
-# if changed, then copy the content to clipboard
 def start_clipboard_service():
+    """
+    watch if clipboard buffer file has changed
+    if true, then pipe content buffer to xclip
+    """
     buffer=os.popen(f"cat {CLIPBOARD_BUFFER_FILE}").read().strip()
     
     # check is xclip installed
