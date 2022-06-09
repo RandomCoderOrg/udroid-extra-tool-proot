@@ -1,0 +1,10 @@
+[Unit]
+Description="clipboard broaker for termux-x11"
+
+[Service]
+WorkingDirectory="/usr/share/udroid"
+ExecStart="bash /usr/share/udroid/main.sh --clipboard-service"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

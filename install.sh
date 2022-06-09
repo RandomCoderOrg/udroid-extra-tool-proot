@@ -38,6 +38,11 @@ if [ -f main.py ]; then
     }
 fi
 
+# Clipboard watcher service
+cp utils/clipboard_watcher.service /lib/systemd/system/clipboard_watcher.service || {
+    die "Failed to install clipboard_watcher.service"
+}
+
 if [ -f main.sh ]; then
     cp -v main.sh /usr/share/udroid/ || {
         die "Failed to copy main.sh"
