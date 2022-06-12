@@ -66,6 +66,10 @@ if [[ -f /usr/bin/udroid-upgrade ]]; then
     rm -rvf /usr/bin/udroid-upgrade
 fi
 
+if [[ -f /usr/bin/udroid-adduser ]]; then
+    rm -rvf /usr/bin/udroid-adduser
+fi
+
 ln -sv /usr/share/udroid/main.sh /usr/bin/startvnc || {
     die "Failed to create symlink"
 }
@@ -76,6 +80,9 @@ ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade-check || {
     die "Failed to create symlink"
 }
 ln -sv /usr/share/udroid/main.sh /usr/bin/udroid-upgrade || {
+    die "Failed to create symlink"
+}
+ln -sv /usr/share/udroid/bash/adduser.sh /usr/bin/udroid-adduser || {
     die "Failed to create symlink"
 }
 
