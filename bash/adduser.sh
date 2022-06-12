@@ -5,7 +5,8 @@
 #  A useradd wrapper to add a new non-root user for proot linux container
 # #############################################################################
 
-REQUIRED_DEPS="openssl useradd"
+REQUIRED_DEPS="openssl"
+NOPASSWD=false
 
 # sudo check
 [[ $EUID -ne 0 ]] && die "You need to be root to run this script"
@@ -18,7 +19,7 @@ for debs in $REQUIRED_DEPS; do
 done
 
 # check for arguments
-if [[ $# -ne 1 ]]; then
+if [[ $# -le 1 ]]; then
     echo "Usage: $0 [ -u | --user | --username ] <username> [ -p | --passwd | --password ] <password> [options]"
     echo "options:"
     echo "--nopasswd -> do not set a password"
@@ -29,11 +30,11 @@ while [[ $# -gt 0 ]]; do
     case $1 in
     -u | --user | --username)
         USERNAME="$2"
-        shift
+        shift 2
         ;;
     -p | --passwd | --password)
         PASSWORD="$2"
-        shift
+        shift 2
         ;;
     --nopasswd) NOPASSWD=true ;;
     esac
@@ -46,15 +47,16 @@ fi
 
 echo "creating user $USERNAME"
 if $NOPASSWD; then
-    useraddd -m -G sudo -d /home/"$USERNAME" -k /etc/skel -s "$SHELL" "$USERNAME"
+    useradd -m -G sudo -p "$(openssl passwd -1 "$PASSWORD")" -d /home/"$USERNAME" -k /etc/skel -s "$SHELL" "$USERNAME"
     echo "Adding user $USERNAME to sudoers "
     echo "$USERNAME" ALL=\(root\) ALL >/etc/sudoers.d/"$USERNAME"
     chmod 0440 /etc/sudoers.d/"$USERNAME"
 else
-    useraddd -m -G sudo -p "$(openssl passwd -1 "$PASSWORD")" -d /home/"$USERNAME" -k /etc/skel -s "$SHELL" "$USERNAME"
+    useradd -m -G sudo -p "$(openssl passwd -1 "$PASSWORD")" -d /home/"$USERNAME" -k /etc/skel -s "$SHELL" "$USERNAME"
     echo "Adding user $USERNAME to sudoers"
     echo "$USERNAME" ALL=\(root\) NOPASSWD: ALL >/etc/sudoers.d/"$USERNAME"
     chmod 0440 /etc/sudoers.d/"$USERNAME"
 fi
 
+# TODO: copy user layout from root to new user
 echo "Done"
