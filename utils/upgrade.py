@@ -1,7 +1,7 @@
 import os
 from utils.funs import *
 
-CURRENT_VERSION = "v0.6"
+CURRENT_VERSION = "v0.7"
 REMOTE_VERISON = os.popen("git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/RandomCoderOrg/udroid-extra-tool-proot | tail -n1 | cut -d \"/\" -f 3").read().strip()
 
 def isold():
