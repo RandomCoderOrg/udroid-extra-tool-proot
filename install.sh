@@ -27,7 +27,7 @@ mkdir -pv /usr/share/udroid || {
 }
 
 if [ -d utils ]; then
-    cp -rv utils /usr/share/udroid/ || {
+    cp -rv utils bash /usr/share/udroid/ || {
         die "Failed to copy utils"
     }
 fi
