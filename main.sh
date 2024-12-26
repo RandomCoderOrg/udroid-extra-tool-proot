@@ -16,4 +16,5 @@ case $(echo "$0" | cut -d "/" -f 4) in
     ;;
     "clipboard-service")
         python3 /usr/share/udroid/main.py --clipboard-service
+    ;;
 esac
